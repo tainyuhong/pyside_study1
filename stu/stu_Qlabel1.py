@@ -22,6 +22,7 @@ class Winform(QWidget):
 
         label3.setAlignment(Qt.AlignCenter)
         label3.setToolTip('这是一个图片标签')
+        label3.setPixmap(QPixmap('tuzi.bmp'))
 
         label4.setText("<a href='#'>http://www.baidu.com</a>")
         label4.setAlignment(Qt.AlignRight)
@@ -48,7 +49,7 @@ class Winform(QWidget):
         self.setToolTip('这是一个<b>气泡提示</b>')
         self.setGeometry(200,300,400,400)
         self.setWindowTitle('气泡提示')
-        self.setWindowIcon(QIcon('icon13.ico'))
+        self.setWindowIcon(QIcon('img/74.ico'))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
