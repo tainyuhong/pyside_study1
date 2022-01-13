@@ -17,10 +17,10 @@ class Winform(QWidget):
         plicenseLineEdit = QLineEdit()
 
         # 设置掩码格式
-        pIPLineEdit.setInputMask('000.000.000.000')
-        pMACLineEdit.setInputMask('HH:HH:HH:HH:HH:HH:HH:HH')
-        pDATELineEdit.setInputMask('0000-00-00')
-        plicenseLineEdit.setInputMask('>AAAAA-AAAAA-AAAAA')
+        pIPLineEdit.setInputMask('000.000.000.000;_')
+        pMACLineEdit.setInputMask('HH:HH:HH:HH:HH:HH:HH:HH;_')
+        pDATELineEdit.setInputMask('0000-00-00;_')
+        plicenseLineEdit.setInputMask('>AAAAA-AAAAA-AAAAA;#')
 
         # 将QLineEdit添加到表单布局
         flo.addRow('IP', pIPLineEdit)
