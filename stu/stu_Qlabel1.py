@@ -15,7 +15,7 @@ class Winform(QWidget):
         label4 = QLabel(self)
 
         # 初始化标签杆件
-        label1.setText('这是一个文本标签')
+        label1.setText('这是一个文本标签...')
         label1.setAlignment(Qt.AlignCenter)
 
         label2.setText("<a href='#'>欢迎使用Python Gui应用</a>")
