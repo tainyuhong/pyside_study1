@@ -8,7 +8,7 @@ class tableViewDemo(QWidget):
         super(tableViewDemo, self).__init__()
 
         self.setWindowTitle('Pyside6  QTableView表视图使用实例')
-        self.resize(500,300)
+        self.resize(700,400)
         self.model = QStandardItemModel(4,4)        # 创建表实例4行4列
         self.model.setHorizontalHeaderLabels(['第一列','第二列','第三列','第四列'])     # 设置表列名
         for row in  range(4):
@@ -17,8 +17,8 @@ class tableViewDemo(QWidget):
                 self.model.setItem(row,col,item)
         self.tableView=QTableView()
         self.tableView.setModel(self.model)
-        # self.tableView.horizontalHeader().setStretchLastSection(True)
-        # self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        # self.tableView.horizontalHeader().setStretchLastSection(True)       # 最后一列填充剩下空间
+        self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)     # 所有列自动拉伸充满界面
         mainLayout = QVBoxLayout()
         mainLayout.addWidget(self.tableView)
         self.setLayout(mainLayout)
