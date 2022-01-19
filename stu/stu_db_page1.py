@@ -98,6 +98,7 @@ class DataGrid(QWidget):
 
     def onNextPage(self):
         self.currentPage += 1
+        print(self.currentPage)
         limitIndex = (self.currentPage - 1) * self.pageRecordCount
         self.queryRecord(limitIndex)
         self.updateStatus()
