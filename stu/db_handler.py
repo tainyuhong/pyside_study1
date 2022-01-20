@@ -37,9 +37,13 @@ class DataGrid():
 
     # 连接数据库，并初始化表头信息，初始化表格数据
     def setTableView(self):
-        # 连接sqlite数据库
-        self.db = QSqlDatabase.addDatabase('QSQLITE')
-        self.db.setDatabaseName('testdb.db')
+        # 连接mysql数据库
+        self.db = QSqlDatabase.addDatabase('QMYSQL')
+        self.db.setHostName('localhost')
+        self.db.setDatabaseName('equipment_mg')
+        self.db.setUserName('root')
+        self.db.setPassword('123456')
+        self.db.setPort('3306')
         self.db.open()
         print('数据库连接成功')
         # 声明查询模型
@@ -119,6 +123,6 @@ class DataGrid():
 
 if __name__ == '__main__':
     db = DataGrid()
-    d = db.total_info
+    d = db.setTableView
     print(d)
     print(db.totalRecrodCount)
