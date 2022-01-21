@@ -1,128 +1,109 @@
-from PySide6.QtSql import QSqlDatabase,QSqlQuery,QSqlTableModel,QSqlQueryModel
-from PySide6.QtCore import *
+import pymysql
+import configparser
+import logging
 
-class DataGrid():
-    def __init__(self):
-        # 查询模型
-        self.queryModel = None
-        # 数据表
-        self.tableView = None
-        # 总数页文本
-        self.totalPageLabel = None
-        # 当前页文本
-        self.currentPageLabel = None
-        # 转到页输入框
-        self.switchPageLineEdit = None
-        # 前一页按钮
-        self.prevButton = None
-        # 后一页按钮
-        self.nextButton = None
-        # 转到页按钮
-        self.switchPageButton = None
-        # 当前页
-        self.currentPage = 0
-        # 总页数
-        self.totalPage = 0
-        # 总记录数
-        self.totalRecrodCount = 0
-        # 每页显示记录数
-        self.PageRecordCount = 5
-        self.db = None
-        self.table_labels = []
+# 定义日志格式
+logging.basicConfig(level=logging.WARN, format='%(asctime)s %(levelname)s %(message)s', filename='machine.log')
 
-    # 关闭数据库事件
-    def closeEvent(self, event):
-        # 关闭数据库
-        self.db.close()
 
-    # 连接数据库，并初始化表头信息，初始化表格数据
-    def setTableView(self):
-        # 连接mysql数据库
-        self.db = QSqlDatabase.addDatabase('QMYSQL')
-        self.db.setHostName('localhost')
-        self.db.setDatabaseName('equipment_mg')
-        self.db.setUserName('root')
-        self.db.setPassword('123456')
-        self.db.setPort('3306')
-        self.db.open()
-        print('数据库连接成功')
-        # 声明查询模型
-        self.queryMode = QSqlQueryModel()
-        self.total_info()
-        # self.statusbar.showMessage('总共 【{}】 页，共 【{}】 条记录。'.format(self.totalPage, self.totalRecrodCount))
-        # 从第1条记录开始查询，第一条索引为0
-        self.recordQuery(0)
-        # 设置表视图模型为QSqlQueryModel
-        self.tableview1.setModel(self.queryMode)
-        # 设置表视图的列名
-        for col, label in enumerate(self.table_labels):
-            self.queryMode.setHeaderData(col, Qt.Horizontal, label)
-
-    # 获取总记录数及总页数
-    def total_info(self):
-        # 获取要查询的表中总记录数及页数判断
-        sql = "select * from student"
-        self.queryMode.setQuery(sql)
-        print('总data', self.queryMode.rowCount())
-        self.totalRecrodCount = self.queryMode.rowCount()
-        if self.totalRecrodCount % self.PageRecordCount == 0:
-            self.totalPage = (self.totalRecrodCount // self.PageRecordCount)
+class DBMysql(object):
+    def __init__(self, **kwargs):
+        # if not db:
+        #     raise RuntimeError('数据库配置错误！')
+        cf = configparser.ConfigParser(allow_no_value=True)
+        try:
+            cf.read('db.ini')
+            self.host = cf.get('db', 'host')
+            self.password = cf.get('db', 'password')
+            self.user = cf.get('db', 'user')
+            self.database = cf.get('db', 'database')
+            self.port = cf.getint('db', 'port')
+            self.charset = cf.get('db', 'charset')
+            self.conn = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database,
+                                        port=self.port, charset=self.charset, **kwargs)
+        except Exception as e:
+            # print('数据库错误：',e)
+            logging.error('数据库错误：{}'.format(e))
         else:
-            self.totalPage = (self.totalRecrodCount // self.PageRecordCount) + 1
-        print('总页数',self.totalPage)
-        return self.totalRecrodCount, self.totalPage
+            self.cursor = self.conn.cursor()
+            logging.info('数据库连接正常')
 
-    # 定义查询记录语句
-    def recordQuery(self, limitIndex):
-        szQuery = ("select * from student limit {},{}".format(limitIndex,
-                                                              self.PageRecordCount))  # limitIndex:索引开始点；5为每页5条记录
-        # 执行查询SQL
-        self.queryMode.setQuery(szQuery)
+    def __del__(self):
+        if self.conn is not None:
+            self.cursor.close()  # 关闭游标
+            self.conn.close()  # 关闭连接
+            logging.info('退出数据库连接...')
 
-    # 下一页查询事件
-    def nextPage(self):
-        if self.currentPage < self.totalPage:
-            limiIndex = (self.currentPage) * self.PageRecordCount  # 获取当前索引号
-            self.recordQuery(limiIndex)
-            self.currentPage += 1
-            # print('向后--当前页', self.currentPage)
+    # 查询数据函数，并返回查询条数
+    def query(self, sql, args=None):
+        data = ''
+        count = 0
+        try:
+            self.cursor.execute(sql, args)
+            # print('传入的sql:',select_all_sql)
+        except Exception as e:
+            logging.error('数据库错误：{}'.format(e))
         else:
-            print('已是最后一页')
-            return
+            data = self.cursor.fetchall()  # 获取所有查询记录
+            count = self.cursor.rowcount
+            self.conn.commit()
+            logging.info('执行成功！{}'.format(self.cursor.rowcount))
+        return count, data
 
-    # 上一页查询事件
-    def upPage(self):
-        limiIndex = (self.currentPage - 2) * self.PageRecordCount  # 获取当前索引号
-        self.currentPage -= 1
-        if limiIndex >= 0:
-            self.recordQuery(limiIndex)
-            # print('向前--当前页', self.currentPage)
-            # print('limiIndex:',limiIndex)
+    # 不返回查询数量的函数
+    def query_single(self, sql, args=None):
+        data = ''
+        print(args)
+        try:
+            self.cursor.execute(sql, args)
+            # print('传入的sql:',select_all_sql)
+        except Exception as e:
+            logging.error('数据库错误：{}'.format(e))
         else:
-            print('已是第一页了')
-            self.currentPage = 1  # 当索引小于0时，设置默认当前页为第一页
-            # print('向前--当前页', self.currentPage)
-            return
+            data = self.cursor.fetchall()  # 获取所有查询记录
+            # count = self.cursor.rowcount
+            self.conn.commit()
+            logging.info('执行成功！{}'.format (self.cursor.rowcount))
+            # print('DB',data)
+        return data
 
-    # 跳转到指定的页
-    def switchpage(self):
-        page = self.switchPageLineEdit.text()
-        if page == '':
-            # QMessageBox.information(self, '提示', '请输入跳转页数')
-            return
-        elif int(page) > 0:
-            page = int(page)
-            limiIndex = (page - 1) * self.PageRecordCount  # 获取当前索引号
-            # print(limiIndex)
-            self.currentPage = page
-            self.recordQuery(limiIndex)
+    def alter(self, sql, args=None):
+        # 修改、插入、删除数据
+        try:
+            self.cursor.execute(sql, args)
+        except Exception as e:
+            logging.error('数据库错误：{}'.format(e))
+            self.conn.rollback()
         else:
-            # QMessageBox.information(self, '提示', '请输入正确的跳转页数')
-            print('请输入正确的跳转页数')
+            self.conn.commit()  # 提交记录
+            #
+            logging.info('-->{} 条记录执行成功！'.format(self.cursor.rowcount))
+        return self.cursor.rowcount
 
+    def alter_many(self, sql1, sql2, args1, args2):
+        # 修改、插入、删除数据 多条记录
+        try:
+            self.cursor.execute(sql1, args1)
+            self.cursor.execute(sql2, args2)
+        except Exception as e:
+            logging.error('数据库错误：{}'.format(e))
+            self.conn.rollback()
+        else:
+            self.conn.commit()  # 提交记录
 
-if __name__ == '__main__':
-    db = DataGrid()
-    d = db.setTableView
-    print(d)
-    print(db.totalRecrodCount)
+            logging.info('-->{} 条记录执行成功！'.format(self.cursor.rowcount))
+        return self.cursor.rowcount
+
+    def alter_multi(self, sql, args=None):
+        # 修改、插入、删除数据
+        try:
+            self.cursor.executemany(sql, args)
+            # print(args)
+        except Exception as e:
+            logging.error('数据库错误：{}'.format(e))
+            self.conn.rollback()
+        else:
+            self.conn.commit()  # 提交记录
+
+            logging.info('-->{} 条记录执行成功！'.format(self.cursor.rowcount))
+        return self.cursor.rowcount
