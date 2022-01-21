@@ -33,7 +33,7 @@ class TableDome(QWidget):
         for num, i in enumerate(data):
             for col_num, col in enumerate(i):
                 tableWidget.setItem(num, col_num, QTableWidgetItem(col))  # 向表格中添加数据
-
+        tableWidget.setAlternatingRowColors(True)       # 表格颜色交替显示
         conLayout.addWidget(tableWidget)
         self.setLayout(conLayout)
         item = tableWidget.findItems('刘1明',Qt.MatchExactly)
