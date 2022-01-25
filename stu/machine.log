@@ -1,0 +1,4 @@
+2022-01-25 17:28:43,565 ERROR 数据库错误：(1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+2022-01-25 17:28:43,569 ERROR 数据库错误：'DBMysql' object has no attribute 'cursor'
+2022-01-25 17:31:16,627 ERROR 数据库错误：(1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+2022-01-25 17:31:16,627 ERROR 数据库错误：'DBMysql' object has no attribute 'cursor'

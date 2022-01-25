@@ -22,7 +22,7 @@ class DBMysql(object):
             self.conn = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database,
                                         port=self.port, charset=self.charset, **kwargs)
         except Exception as e:
-            # print('数据库错误：',e)
+            print('数据库错误：',e)
             logging.error('数据库错误：{}'.format(e))
         else:
             self.cursor = self.conn.cursor()
