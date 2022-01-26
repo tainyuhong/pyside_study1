@@ -13,10 +13,11 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         self.setupUi(self)
         # self.resize(1150,750)
         self.db= DBMysql()
-        self.select_btn.clicked.connect(self.get_input_data)
+
 
         # 设置表格相关信息
         self.select_table.setHorizontalHeaderLabels(['ID','机房','机柜','U位','U数','设备类型','设备品牌','设备型号','设备序列号','设备名称','设备IP','设备管理员'])
+        self.select_table.setStyleSheet("alternate-background-color: LightBLue;background-color: white;")  # 设置行的交替显示背景颜色
         # self.select_table.resizeRowsToContents()        # 自适应行高
         # self.select_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)    # # 自适应伸缩模式
 
@@ -33,6 +34,7 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         # 分页查询按钮事件
         self.go_btn.clicked.connect(self.recordQuery)      # 定义转到按钮点击事件
         self.next_btn.clicked.connect(self.nextPage)        # 定义下一页按钮事件
+        self.select_btn.clicked.connect(self.get_input_data)    # 按条件进行查询
 
     # 获取数据
     def get_input_data(self):
@@ -61,14 +63,14 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
     # 分页显示数据查询并显示
     # def page_btn(self):
 
-    # 查询记录并显示数据
-    def recordQuery(self,limiIndex=None):
+    # 定义查询记录并显示数据
+    def recordQuery(self,limiIndex):
         sql_page = data_sql + ' limit %s,15 '        # 定义分页查询SQL
         # print(self.page_input_le.text())
-        print('当前页：',self.current_page)
-        self.current_page = int(self.page_input_le.text())
-        num = (int(self.page_input_le.text())-1)*15     # 定义每页开始记录数
-        page_data = self.db.query_single(sql_page,num)      # 每页数据内容
+        # self.current_page = int(self.page_input_le.text())
+        # print('当前页：', self.current_page)
+        # num = (int(self.page_input_le.text())-1)*15     # 定义每页开始记录数
+        page_data = self.db.query_single(sql_page,limiIndex)      # 每页数据内容
         print(page_data)
         row_num = len(page_data)  # 获取行数
         for i in range(row_num):
@@ -82,17 +84,18 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
 
     # 下一页查询事件
     def nextPage(self):
-        print('self.currentPage',self.current_page,type(self.current_page))
-        print('self.totalPage',self.totalPage,type(self.totalPage))
+        print('self.currentPage',self.current_page)
+        print('self.totalPage',self.totalPage)
         if self.current_page < self.totalPage:
             limiIndex = self.current_page * 15  # 获取当前索引号
             self.recordQuery(limiIndex)
             print('当前页：',self.current_page)
-            self.current_page += 1
+
             # print('向后--当前页', self.currentPage)
         else:
             print('已是最后一页')
             return
+        self.current_page += 1
         print('当前页：', self.current_page)
 
 if __name__ == '__main__':

@@ -179,7 +179,7 @@ class Ui_MachineSelect(object):
         self.select_table.horizontalHeader().setCascadingSectionResizes(False)
         self.select_table.horizontalHeader().setHighlightSections(True)
         self.select_table.horizontalHeader().setProperty("showSortIndicator", False)
-        self.select_table.verticalHeader().setVisible(True)
+        self.select_table.verticalHeader().setVisible(False)
         self.select_table.verticalHeader().setCascadingSectionResizes(False)
 
         self.verticalLayout.addWidget(self.select_table)
