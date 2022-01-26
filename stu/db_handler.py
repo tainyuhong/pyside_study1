@@ -22,20 +22,29 @@ class DBMysql(object):
             self.conn = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database,
                                         port=self.port, charset=self.charset, **kwargs)
         except Exception as e:
-            print('数据库错误：',e)
+            # print('数据库错误：',e)
             logging.error('数据库错误：{}'.format(e))
         else:
             self.cursor = self.conn.cursor()
             logging.info('数据库连接正常')
+
 
     def __del__(self):
         if self.conn is not None:
             self.cursor.close()  # 关闭游标
             self.conn.close()  # 关闭连接
             logging.info('退出数据库连接...')
+        else:
+            return
 
     # 查询数据函数，并返回查询条数
     def query(self, sql, args=None):
+        '''
+        查询数据函数，并返回查询条数
+        :param sql: sql查询语句
+        :param args: 需要传入的SQL参数
+        :return: 返回二元组数据，（记数条数，查询到的数据）
+        '''
         data = ''
         count = 0
         try:
@@ -52,8 +61,13 @@ class DBMysql(object):
 
     # 不返回查询数量的函数
     def query_single(self, sql, args=None):
-        data = ''
-        print(args)
+        '''
+        不返回查询记录条数的函数
+        :param sql: sql查询语句
+        :param args: 需要传入的SQL参数
+        :return: 返回二元组数据，格式：（（第一条记录）,（第二条记录））
+        '''
+        # print(args)
         try:
             self.cursor.execute(sql, args)
             # print('传入的sql:',select_all_sql)

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
+    <width>834</width>
     <height>755</height>
    </rect>
   </property>
@@ -21,15 +21,15 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>img/11.ico</normaloff>img/11.ico</iconset>
+    <normaloff>C:/Users/zl/.designer/backup/img/11.ico</normaloff>C:/Users/zl/.designer/backup/img/11.ico</iconset>
   </property>
   <widget class="QGroupBox" name="vbox">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
-     <height>750</height>
+     <width>826</width>
+     <height>697</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -86,32 +86,6 @@
        <set>Qt::AlignCenter</set>
       </property>
       <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0" columnstretch="1,2,1,2,1">
-       <item row="0" column="0" rowspan="2">
-        <widget class="QLabel" name="label">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>机   房</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1" rowspan="2">
-        <widget class="QLineEdit" name="room">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>3</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="3">
         <widget class="QLineEdit" name="cabinet">
          <property name="sizePolicy">
@@ -119,19 +93,6 @@
            <horstretch>3</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="4">
-        <widget class="QPushButton" name="select_btn">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>查    询</string>
          </property>
         </widget>
        </item>
@@ -145,8 +106,18 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="2">
-        <widget class="QLabel" name="label_3">
+       <item row="0" column="1" rowspan="2">
+        <widget class="QLineEdit" name="room">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>3</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" rowspan="2">
+        <widget class="QLabel" name="label">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>2</horstretch>
@@ -154,20 +125,10 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>设备名称</string>
+          <string>机   房</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="3">
-        <widget class="QLineEdit" name="machine_name">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>3</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
          </property>
         </widget>
        </item>
@@ -187,6 +148,29 @@
          </property>
         </widget>
        </item>
+       <item row="1" column="4">
+        <widget class="QPushButton" name="select_btn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>查    询</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLineEdit" name="machine_name">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>3</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="2" rowspan="2">
         <widget class="QLabel" name="label_2">
          <property name="sizePolicy">
@@ -197,6 +181,22 @@
          </property>
          <property name="text">
           <string>机      柜</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="label_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>设备名称</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -224,7 +224,7 @@
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>1</horstretch>
-        <verstretch>6</verstretch>
+        <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="minimumSize">
@@ -296,6 +296,87 @@
       <column/>
       <column/>
       <column/>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>710</y>
+     <width>811</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="page_layout" stretch="2,2,2,2,1,1,1,1,3,3">
+    <property name="spacing">
+     <number>20</number>
+    </property>
+    <item>
+     <widget class="QPushButton" name="home_btn">
+      <property name="text">
+       <string>首页</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pre_btn">
+      <property name="text">
+       <string>上一页</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="next_btn">
+      <property name="text">
+       <string>下一页</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="last_btn">
+      <property name="text">
+       <string>最后一页</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="go_page_lb">
+      <property name="text">
+       <string>跳转到</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="page_input_le"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="page_lb">
+      <property name="text">
+       <string>页</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="go_btn">
+      <property name="text">
+       <string>转到</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="total_page_lb">
+      <property name="text">
+       <string>总页数</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="current_page_lb">
+      <property name="text">
+       <string>当前页</string>
+      </property>
      </widget>
     </item>
    </layout>
