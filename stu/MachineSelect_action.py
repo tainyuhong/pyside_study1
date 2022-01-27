@@ -17,7 +17,7 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
 
         # 设置表格相关信息
         self.select_table.setHorizontalHeaderLabels(['ID','机房','机柜','U位','U数','设备类型','设备品牌','设备型号','设备序列号','设备名称','设备IP','设备管理员'])
-        self.select_table.setStyleSheet("alternate-background-color: LightBLue;background-color: white;")  # 设置行的交替显示背景颜色
+        self.select_table.setStyleSheet("alternate-background-color: white;background-color: LightBLue;")  # 设置行的交替显示背景颜色
         # self.select_table.resizeRowsToContents()        # 自适应行高
         # self.select_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)    # # 自适应伸缩模式
 
@@ -69,10 +69,6 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
     # 定义查询记录并显示数据
     def recordQuery(self,limiIndex):
         sql_page = data_sql + ' limit %s,15 '        # 定义分页查询SQL
-        # print(self.page_input_le.text())
-        # self.current_page = int(self.page_input_le.text())
-        # print('当前页：', self.current_page)
-        # num = (int(self.page_input_le.text())-1)*15     # 定义每页开始记录数
         page_data = self.db.query_single(sql_page,limiIndex)      # 每页数据内容
         print(page_data)
         self.select_table.clearContents()       # 清除所有内容
