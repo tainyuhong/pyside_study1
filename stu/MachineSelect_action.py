@@ -22,7 +22,7 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         # self.select_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)    # # 自适应伸缩模式
 
         # 初始化定义分页信息
-        self.pre_page = None
+        # self.pre_page = None
         self.next_page = None
         self.first_page = None
         self.last_page = None
@@ -31,10 +31,12 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
 
         self.page_record()      # 显示总共页数及总记录数
 
+        self.select_btn.clicked.connect(self.get_input_data)  # 按条件进行查询
         # 分页查询按钮事件
         self.go_btn.clicked.connect(self.recordQuery)      # 定义转到按钮点击事件
         self.next_btn.clicked.connect(self.nextPage)        # 定义下一页按钮事件
-        self.select_btn.clicked.connect(self.get_input_data)    # 按条件进行查询
+        self.pre_btn.clicked.connect(self.prePage)     # 定义上一页按钮事件
+        self..clicked.connect(self.firstPage)    # # 定义首页按钮事件
 
     # 获取数据
     def get_input_data(self):
@@ -98,8 +100,27 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         self.current_page += 1
         print('当前页：', self.current_page)
 
-if __name__ == '__main__':
+    # 上一页查询事件
+    def prePage(self):
+        limiIndex = (self.current_page - 2) * 15  # 获取当前索引号
+        self.current_page -= 1
+        if limiIndex >= 0:
+            self.recordQuery(limiIndex)
+            print('向前--当前页', self.current_page)
+            print('limiIndex:',limiIndex)
+        else:
+            print('已是第一页了')
+            self.current_page = 1  # 当索引小于0时，设置默认当前页为第一页
+            print('向前--当前页', self.current_page)
+            return
 
+    # 首页查询事件
+    def firstPage(self):
+        limiIndex = 0  # 获取当前索引号
+        self.recordQuery(limiIndex)
+
+
+if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     mainWindow = Ui_MachineSelect()
     mainWindow.show()
