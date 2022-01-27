@@ -36,7 +36,8 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         self.go_btn.clicked.connect(self.recordQuery)      # 定义转到按钮点击事件
         self.next_btn.clicked.connect(self.nextPage)        # 定义下一页按钮事件
         self.pre_btn.clicked.connect(self.prePage)     # 定义上一页按钮事件
-        self..clicked.connect(self.firstPage)    # # 定义首页按钮事件
+        self.home_btn.clicked.connect(self.firstPage)    # # 定义首页按钮事件
+        self.last_btn.clicked.connect(self.lastPage)        # 定义最后一页事件
 
     # 获取数据
     def get_input_data(self):
@@ -74,8 +75,8 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         # num = (int(self.page_input_le.text())-1)*15     # 定义每页开始记录数
         page_data = self.db.query_single(sql_page,limiIndex)      # 每页数据内容
         print(page_data)
-        row_num = len(page_data)  # 获取行数
-        for i in range(row_num):
+        self.select_table.clearContents()       # 清除所有内容
+        for i in range(len(page_data)):
             for _ in range(12):
                 if page_data[i][_] is None:
                     self.select_table.setItem(i, _, QTableWidgetItem(''))  # 显示单元格数据
@@ -118,6 +119,15 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
     def firstPage(self):
         limiIndex = 0  # 获取当前索引号
         self.recordQuery(limiIndex)
+        self.current_page = 1
+
+    # 最后一页查询事件
+    def lastPage(self):
+        print('最后一页',self.totalPage)
+        limiIndex = (self.totalPage-1) * 15  # 获取当前索引号
+        print('当前索引：',limiIndex)
+        self.recordQuery(limiIndex)
+        self.current_page = self.totalPage
 
 
 if __name__ == '__main__':
