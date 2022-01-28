@@ -24,7 +24,7 @@ class Ui_MachineSelect(object):
     def setupUi(self, MachineSelect):
         if not MachineSelect.objectName():
             MachineSelect.setObjectName(u"MachineSelect")
-        MachineSelect.resize(834, 755)
+        MachineSelect.resize(1000, 750)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(1)
@@ -35,7 +35,7 @@ class Ui_MachineSelect(object):
         MachineSelect.setWindowIcon(icon)
         self.vbox = QGroupBox(MachineSelect)
         self.vbox.setObjectName(u"vbox")
-        self.vbox.setGeometry(QRect(0, 0, 826, 697))
+        self.vbox.setGeometry(QRect(0, 0, 1001, 701))
         sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
@@ -186,7 +186,7 @@ class Ui_MachineSelect(object):
 
         self.layoutWidget = QWidget(MachineSelect)
         self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(10, 710, 811, 31))
+        self.layoutWidget.setGeometry(QRect(10, 710, 981, 31))
         self.page_layout = QHBoxLayout(self.layoutWidget)
         self.page_layout.setSpacing(20)
         self.page_layout.setObjectName(u"page_layout")

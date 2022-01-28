@@ -144,7 +144,7 @@ class db_page(QWidget):
             self.currentPage = page
             self.recordQuery(limiIndex)
         else:
-            QMessageBox.information(self, '提示', '请输入正确的跳转页数')
+            QtWi.QMessageBox.information(self, '提示', '请输入正确的跳转页数')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
