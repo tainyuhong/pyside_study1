@@ -10,11 +10,17 @@
     <height>750</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-    <horstretch>1</horstretch>
-    <verstretch>1</verstretch>
-   </sizepolicy>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>750</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>750</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>设备查询窗口</string>
@@ -82,37 +88,50 @@
         <pointsize>12</pointsize>
        </font>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
-      <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0" columnstretch="1,2,1,2,1">
+      <property name="title">
+       <string>查询条件</string>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0,0" columnstretch="1,1,0,1,2,1,1">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <property name="horizontalSpacing">
+        <number>5</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>10</number>
+       </property>
        <item row="1" column="3">
-        <widget class="QLineEdit" name="cabinet">
+        <widget class="QLabel" name="label_4">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>3</horstretch>
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>2</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="mg_ip">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>3</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+         <property name="text">
+          <string>管理   IP</string>
          </property>
-        </widget>
-       </item>
-       <item row="0" column="1" rowspan="2">
-        <widget class="QLineEdit" name="room">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>3</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -125,15 +144,25 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>机   房</string>
+          <string>机    房</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" rowspan="2">
-        <widget class="QLabel" name="label_4">
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="cabinet">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>3</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_2">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>2</horstretch>
@@ -141,14 +170,14 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>管理IP</string>
+          <string>机    柜</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
-       <item row="1" column="4">
+       <item row="1" column="6">
         <widget class="QPushButton" name="select_btn">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -161,8 +190,8 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="3">
-        <widget class="QLineEdit" name="machine_name">
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="room">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>3</horstretch>
@@ -171,23 +200,7 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2" rowspan="2">
-        <widget class="QLabel" name="label_2">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>2</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>机      柜</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
+       <item row="4" column="3">
         <widget class="QLabel" name="label_3">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -200,6 +213,26 @@
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLineEdit" name="mg_ip">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>3</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="4">
+        <widget class="QLineEdit" name="machine_name">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>3</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
         </widget>
        </item>
@@ -223,15 +256,21 @@
      <widget class="QTableWidget" name="select_table">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>1</horstretch>
+        <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="minimumSize">
        <size>
-        <width>806</width>
+        <width>900</width>
         <height>500</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="dragEnabled">
        <bool>false</bool>
@@ -382,6 +421,20 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>room</tabstop>
+  <tabstop>mg_ip</tabstop>
+  <tabstop>cabinet</tabstop>
+  <tabstop>machine_name</tabstop>
+  <tabstop>select_btn</tabstop>
+  <tabstop>select_table</tabstop>
+  <tabstop>home_btn</tabstop>
+  <tabstop>pre_btn</tabstop>
+  <tabstop>next_btn</tabstop>
+  <tabstop>last_btn</tabstop>
+  <tabstop>page_input_le</tabstop>
+  <tabstop>go_btn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

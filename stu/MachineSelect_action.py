@@ -4,8 +4,7 @@ from MachineSelect import *
 from db_handler import *
 
 
-data_sql = ''' select * from machine_list '''
-# sql_page = ''' select * from machine_list limit %s,15;'''
+data_sql = ''' select * from machine_list  where 1=1 '''
 
 class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
     def __init__(self,parent=None):
@@ -45,8 +44,29 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         cabinet = self.cabinet.text()
         machine_name = self.machine_name.text()
         mg_ip = self.mg_ip.text()
-        # print(room,cabinet,mg_ip,machine_name)
-        return room,cabinet,mg_ip,machine_name
+        print(room,mg_ip,cabinet,machine_name)
+
+        select_sql = ''' select * from machine_list  where 1=1 '''
+        # 根据条件查询设备
+        select_values = []
+
+        # 判断并组合查询SQL
+        if self.room.text() != '':
+            select_sql = select_sql + 'and room_name= %s'
+            select_values.append(self.room.text())
+        if self.mg_ip.text() != '':
+            select_sql = select_sql + ' and cab_name=%s'
+            select_values.append(self.mg_ip.text())
+        if self.cabinet.text() != '':
+            select_sql = select_sql + ' and start_position=%s'
+            select_values.append(self.cabinet.text())
+        if self.machine_name.text() != '':
+            select_sql = select_sql + ' and machine_name=%s'
+            select_values.append(self.machine_name.text())
+        # tmp = self.db.query_single(data_sql, select_values)
+        print('查询条件',select_values)
+        print('查询SQL',select_sql)
+        self.db.query_single(select_sql,select_values)
 
     # 获取要查询的总页数
     def page_record(self):
@@ -63,12 +83,10 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         # print('总页数',totalPage)
         return self.totalPage
 
-    # 分页显示数据查询并显示
-    # def page_btn(self):
-
     # 定义查询记录并显示数据
-    def recordQuery(self,limiIndex):
-        sql_page = data_sql + ' limit %s,15 '        # 定义分页查询SQL
+    def recordQuery(self,sql,limiIndex,args=None):
+        sql_page = sql + ' limit %s,15 '        # 定义分页查询SQL
+
         page_data = self.db.query_single(sql_page,limiIndex)      # 每页数据内容
         # print(page_data)
         self.select_table.clearContents()       # 清除所有内容
@@ -81,13 +99,12 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         self.select_table.resizeColumnsToContents()  # 自适应列宽
         self.page_record()  # 显示总页数
 
-
     # 转到指定页事件
     def goToPage(self):
         if self.page_input_le.text() != '' and int(self.page_input_le.text()) <= self.totalPage:
             self.current_page = int(self.page_input_le.text())      # 获取输入的查询页数
             limiIndex = (int(self.page_input_le.text()) - 1) * 15  # 定位查询开始记录索引点
-            self.recordQuery(limiIndex)             # 查询数据并进行显示
+            self.recordQuery(data_sql,limiIndex)             # 查询数据并进行显示
             self.page_input_le.setText('')
             self.current_page_lb.setText('当前第 {} 页'.format(self.current_page))      # 显示当前页数
             if self.current_page == self.totalPage:
@@ -115,7 +132,7 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         # print('self.totalPage',self.totalPage)
         if self.current_page < self.totalPage:
             limiIndex = self.current_page * 15  # 获取当前索引号
-            self.recordQuery(limiIndex)
+            self.recordQuery(data_sql,limiIndex)
             # print('当前页：',self.current_page)
             self.pre_btn.setDisabled(False)  # 上一页按钮可用
             self.next_btn.setDisabled(False)  # 下一页按钮可用
@@ -140,7 +157,7 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         self.current_page -= 1
         self.current_page_lb.setText('当前第 {} 页'.format(self.current_page))  # 显示当前页数
         if limiIndex >= 0:
-            self.recordQuery(limiIndex)
+            self.recordQuery(data_sql,limiIndex)
             # print('向前--当前页', self.current_page)
             # print('limiIndex:',limiIndex)
             self.pre_btn.setDisabled(False)
@@ -160,7 +177,7 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
     # 首页查询事件
     def firstPage(self):
         limiIndex = 0  # 获取当前索引号
-        self.recordQuery(limiIndex)
+        self.recordQuery(data_sql,limiIndex)
         self.current_page = 1       # 当索引小于0时，设置默认当前页为第一页
         self.current_page_lb.setText('当前第 {} 页'.format(self.current_page))  # 显示当前页数
         self.pre_btn.setDisabled(True)  # 当为第一页时，上一页按钮不可用
@@ -173,7 +190,7 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         # print('最后一页',self.totalPage)
         limiIndex = (self.totalPage-1) * 15  # 获取当前索引号
         # print('当前索引：',limiIndex)
-        self.recordQuery(limiIndex)
+        self.recordQuery(data_sql,limiIndex)
         self.current_page = self.totalPage
         self.current_page_lb.setText('当前第 {} 页'.format(self.current_page))  # 显示当前页数
         self.pre_btn.setDisabled(False)  # 当为第一页时，按钮可用
