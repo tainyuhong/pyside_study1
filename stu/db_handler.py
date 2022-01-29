@@ -70,7 +70,8 @@ class DBMysql(object):
         # print(args)
         try:
             self.cursor.execute(sql, args)
-            # print('传入的sql:',select_all_sql)
+            # print('传入的sql:',sql)
+            # print('传入的args:',args)
         except Exception as e:
             logging.error('数据库错误：{}'.format(e))
         else:
