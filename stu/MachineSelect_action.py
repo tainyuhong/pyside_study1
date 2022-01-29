@@ -66,7 +66,8 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
         # tmp = self.db.query_single(data_sql, select_values)
         print('查询条件',select_values)
         print('查询SQL',select_sql)
-        self.db.query_single(select_sql,select_values)
+        self.recordQuery(select_sql, 0, args=None)
+        # self.db.query_single(select_sql,select_values)
 
     # 获取要查询的总页数
     def page_record(self):
@@ -86,8 +87,12 @@ class Ui_MachineSelect(QtWidgets.QMainWindow,Ui_MachineSelect):
     # 定义查询记录并显示数据
     def recordQuery(self,sql,limiIndex,args=None):
         sql_page = sql + ' limit %s,15 '        # 定义分页查询SQL
-
-        page_data = self.db.query_single(sql_page,limiIndex)      # 每页数据内容
+        if args is None:
+            page_data = self.db.query_single(sql_page,limiIndex)      # 每页数据内容
+        else:
+            limiIndex = args.insert(limiIndex)
+            print('不为空：',limiIndex)
+            page_data = self.db.query_single(sql_page, limiIndex)  # 每页数据内容
         # print(page_data)
         self.select_table.clearContents()       # 清除所有内容
         for i in range(len(page_data)):
