@@ -78,7 +78,7 @@ class DBMysql(object):
             data = self.cursor.fetchall()  # 获取所有查询记录
             # count = self.cursor.rowcount
             self.conn.commit()
-            logging.info('执行成功！{}'.format (self.cursor.rowcount))
+            logging.info('执行成功！{}'.format(self.cursor.rowcount))
             # print('DB',data)
         return data
 

@@ -34,3 +34,30 @@
 2022-01-29 22:33:41,587 ERROR 数据库错误：not all arguments converted during string formatting
 2022-01-29 22:34:34,103 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s' at line 1")
 2022-01-29 22:34:41,646 ERROR 数据库错误：not all arguments converted during string formatting
+2022-01-30 09:03:22,566 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'limit 0,15' at line 1")
+2022-01-30 09:04:22,457 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s' at line 1")
+2022-01-30 09:04:53,702 ERROR 数据库错误：not all arguments converted during string formatting
+2022-01-30 09:06:31,992 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s' at line 1")
+2022-01-30 09:07:50,776 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s and cab_name=%s' at line 1")
+2022-01-30 09:09:22,665 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s and mg_ip=%s and cab_name=%s' at line 1")
+2022-01-30 09:09:48,379 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s and cab_name=%s' at line 1")
+2022-01-30 09:12:17,818 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s' at line 1")
+2022-01-30 09:14:17,544 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s' at line 1")
+2022-01-30 09:16:21,259 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s' at line 1")
+2022-01-30 09:19:28,272 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s' at line 1")
+2022-01-30 09:20:54,889 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s' at line 1")
+2022-01-30 09:21:31,033 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%s' at line 1")
+2022-01-30 09:29:28,580 ERROR 数据库错误：not all arguments converted during string formatting
+2022-01-30 09:29:58,133 ERROR 数据库错误：not all arguments converted during string formatting
+2022-01-30 15:11:07,506 ERROR 数据库错误：not all arguments converted during string formatting
+2022-01-30 15:11:17,215 ERROR 数据库错误：not all arguments converted during string formatting
+2022-01-30 15:11:55,255 ERROR 数据库错误：not all arguments converted during string formatting
+2022-01-30 15:16:03,444 ERROR 数据库错误：not all arguments converted during string formatting
+2022-01-30 15:16:44,062 ERROR 数据库错误：not all arguments converted during string formatting
+2022-01-30 15:17:02,326 ERROR 数据库错误：not all arguments converted during string formatting
+2022-01-30 15:18:23,050 ERROR 数据库错误：not enough arguments for format string
+2022-01-30 15:55:16,602 ERROR 数据库错误：not enough arguments for format string
+2022-01-30 16:06:49,951 ERROR 数据库错误：not enough arguments for format string
+2022-01-30 16:11:02,950 ERROR 数据库错误：not enough arguments for format string
+2022-01-30 16:15:17,317 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'limit 0,15' at line 1")
+2022-01-30 16:21:11,206 ERROR 数据库错误：(1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-15,15' at line 1")
